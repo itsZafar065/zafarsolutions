@@ -74,6 +74,8 @@ export default function Projects() {
                     src={project.image} 
                     alt={project.title}
                     fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 360px"
+                    loading="lazy"
                     className="object-cover object-top transition-transform duration-700 group-hover:scale-105 grayscale-[15%] group-hover:grayscale-0"
                   />
                   <div className="absolute inset-0 bg-background/20 group-hover:bg-transparent transition-all" />

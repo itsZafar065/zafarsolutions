@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, ExternalLink, Code2, X, MessageCircle, ArrowRight } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 import { projectsData } from "@/data/projects";
 
@@ -139,8 +140,8 @@ export default function OurWorkPage() {
                 </h2>
 
                 <p className="text-foreground/70 text-xs sm:text-sm md:text-base max-w-2xl leading-relaxed mb-8">
-                  Hum currently apne latest high-fidelity Figma prototypes, design systems, aur client web/mobile app dashboards ko public showcase ke liye curate kar rahe hain. 
-                  Chunke humare recent enterprise projects confidential <strong>NDA</strong> ke tehat hain, inke live design walkthroughs on-demand provide kiye jaate hain.
+                  We are currently formatting and publishing our latest high-fidelity Figma design files, atomic design systems, and client web & mobile app prototypes. 
+                  Because our primary enterprise design systems are protected under confidential <strong>Non-Disclosure Agreements (NDAs)</strong>, private interactive walkthroughs are available on-demand.
                 </p>
 
                 {/* 3 Teaser Feature Cards */}
@@ -201,10 +202,12 @@ export default function OurWorkPage() {
                     >
                       <div>
                         <div className="relative aspect-video overflow-hidden">
-                          <img 
+                          <Image 
                             src={project.image} 
                             alt={project.title} 
-                            className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                            fill
+                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                            className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
                             loading="lazy"
                           />
                           {project.status && (

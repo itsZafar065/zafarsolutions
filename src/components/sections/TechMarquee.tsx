@@ -72,6 +72,9 @@ export default function TechMarquee() {
                   <img 
                     src={`https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${tech.icon}.svg`} 
                     alt={tech.name}
+                    width={24}
+                    height={24}
+                    loading="lazy"
                     className={`w-6 h-6 object-contain group-hover:scale-110 transition-transform ${
                       isExpress || isNext ? "dark:invert" : ""
                     }`}

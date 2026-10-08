@@ -60,10 +60,11 @@ export default function Hero() {
             {/* Developer Avatar Container */}
             <div className="absolute inset-4 rounded-full overflow-hidden border-[6px] border-foreground/10 dark:border-white/10 shadow-2xl z-10 bg-foreground/5 dark:bg-[#0d0a21]">
               <Image 
-                src="/mypic.png" 
+                src="/mypic.webp" 
                 alt="Zafar Muhammad" 
                 fill
                 priority
+                sizes="(max-width: 640px) 270px, (max-width: 1024px) 360px, 420px"
                 className="object-cover object-top brightness-95"
               />
             </div>
