@@ -69,10 +69,10 @@ export default function Navbar() {
         ? "bg-white/80 dark:bg-[#030014]/85 backdrop-blur-xl border-black/[0.06] dark:border-white/[0.08] py-3.5 shadow-xl dark:shadow-brandBlue/5" 
         : "bg-transparent border-transparent py-5"
     }`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between w-full">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 flex items-center justify-between w-full">
         
         {/* Logo */}
-        <div className="relative z-[10001]">
+        <div className="relative z-[10001] shrink-0">
           <Logo href="/" size="md" />
         </div>
 
@@ -89,7 +89,7 @@ export default function Navbar() {
         </div>
 
         {/* Actions */}
-        <div className="flex items-center gap-3 relative z-[10001]">
+        <div className="flex items-center gap-2 sm:gap-3 relative z-[10001] shrink-0">
           <ThemeToggle />
           <div className="hidden lg:block">
             <Link 
@@ -103,7 +103,7 @@ export default function Navbar() {
           </div>
           <button 
             onClick={() => setIsOpen(!isOpen)} 
-            className="lg:hidden relative z-[10001] w-11 h-11 flex flex-col items-center justify-center gap-1.5 text-foreground bg-foreground/5 hover:bg-foreground/10 border border-foreground/10 rounded-xl transition-all duration-300 focus:outline-none group"
+            className="lg:hidden relative z-[10001] w-10 h-10 sm:w-11 sm:h-11 flex flex-col items-center justify-center gap-1.5 text-foreground bg-foreground/5 hover:bg-foreground/10 border border-foreground/10 rounded-xl transition-all duration-300 focus:outline-none group"
             aria-label="Toggle Menu"
           >
             <span className={`w-5 h-[2px] rounded-full transition-all duration-300 transform origin-center ${

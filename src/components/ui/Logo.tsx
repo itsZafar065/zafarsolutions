@@ -104,20 +104,20 @@ export default function Logo({
   href = "/",
 }: LogoProps) {
   const content = (
-    <div className={`flex items-center gap-2.5 sm:gap-3 group cursor-pointer ${className}`}>
+    <div className={`flex items-center gap-2 sm:gap-3 group cursor-pointer ${className}`}>
       <ZSIcon size={size} />
 
       {showText && (
         <div className={`flex flex-col leading-none ${textClassName}`}>
-          <div className="flex items-center gap-1.5 font-sans tracking-tight">
-            <span className="text-foreground font-black text-lg sm:text-xl tracking-tight">
+          <div className="flex items-center gap-1 sm:gap-1.5 font-sans tracking-tight">
+            <span className="text-foreground font-black text-base sm:text-xl tracking-tight">
               Zafar
             </span>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-brandBlue via-brandPurple to-brandGreen font-bold text-lg sm:text-xl tracking-tight">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-brandBlue via-brandPurple to-brandGreen font-bold text-base sm:text-xl tracking-tight">
               Solutions
             </span>
           </div>
-          <span className="text-[9px] uppercase tracking-[0.22em] text-foreground/45 font-semibold mt-0.5">
+          <span className="text-[8px] sm:text-[9px] uppercase tracking-[0.2em] sm:tracking-[0.22em] text-foreground/45 font-semibold mt-0.5">
             Digital Agency
           </span>
         </div>
