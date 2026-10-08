@@ -5,6 +5,8 @@ import { Menu, X, ChevronDown, ArrowRight, Instagram, Linkedin, Twitter } from "
 import Link from "next/link";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 
+import Logo from "@/components/ui/Logo";
+
 interface NavLinkProps {
   href?: string;
   name: string;
@@ -33,7 +35,7 @@ NavLink.displayName = "NavLink";
 const navLinks = [
   { name: "Home", href: "/" },
   { name: "Services", href: "/services" },
-  { name: "Portfolio", href: "/portfolio" },
+  { name: "Our Work", href: "/our-work" },
   { name: "About", href: "/about" },
   { name: "Contact", href: "/contact" },
 ];
@@ -70,14 +72,9 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between w-full">
         
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 group relative z-[10001]">
-          <div className="w-10 h-10 bg-gradient-to-br from-brandBlue to-brandGreen rounded-xl flex items-center justify-center font-black text-white shadow-lg group-hover:rotate-12 transition-all duration-500">
-            ZM
-          </div>
-          <span className="text-foreground font-bold tracking-tighter text-xl hidden sm:inline-block">
-            Zafar<span className="text-foreground/40 font-normal">Muhammad</span>
-          </span>
-        </Link>
+        <div className="relative z-[10001]">
+          <Logo href="/" size="md" />
+        </div>
 
         {/* Desktop Nav */}
         <div className="hidden lg:flex items-center gap-8">
@@ -155,8 +152,8 @@ export default function Navbar() {
                 <div className="mt-12 space-y-6 pb-10">
                    <div className="space-y-3">
                       <p className="text-xs font-bold uppercase tracking-[0.3em] text-foreground/40">Say Hello</p>
-                      <Link href="mailto:channazafar66@gmail.com" className="text-xl font-bold text-foreground hover:text-brandBlue transition-colors">
-                        channazafar66@gmail.com
+                      <Link href="mailto:zafarsolutions.pk@gmail.com" className="text-xl font-bold text-foreground hover:text-brandBlue transition-colors">
+                        zafarsolutions.pk@gmail.com
                       </Link>
                    </div>
                    

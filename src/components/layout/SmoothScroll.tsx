@@ -11,7 +11,7 @@ function ScrollReset() {
     if (lenis) {
       lenis.scrollTo(0, { immediate: true });
     }
-  }, [pathname, lenis]);
+  }, [pathname]);
 
   return null;
 }

@@ -2,12 +2,13 @@
 import { motion } from "framer-motion";
 import { Linkedin, Mail, MapPin, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
+import Logo from "@/components/ui/Logo";
 
 const footerLinks = {
   navigation: [
     { name: "Home", href: "/" },
     { name: "Services", href: "/services" },
-    { name: "Portfolio", href: "/portfolio" },
+    { name: "Our Work", href: "/our-work" },
     { name: "About", href: "/about" },
     { name: "Contact", href: "/contact" },
   ],
@@ -31,14 +32,7 @@ export default function Footer() {
           
           {/* SECTION 1: Brand & About */}
           <div className="space-y-6">
-            <Link href="/" className="flex items-center gap-2">
-              <div className="w-10 h-10 bg-gradient-to-br from-[#38bdf8] to-[#4ade80] rounded-xl flex items-center justify-center font-black text-black">
-                ZM
-              </div>
-              <span className="text-foreground font-bold tracking-tighter text-xl">
-                Zafar<span className="text-gray-500">Muhammad</span>
-              </span>
-            </Link>
+            <Logo href="/" size="md" />
             <p className="text-foreground/60 text-sm leading-relaxed max-w-xs">
               Building high-performance Next.js, React, and WordPress solutions with premium UI/UX designs.
             </p>
@@ -91,10 +85,10 @@ export default function Footer() {
                 <MapPin size={18} className="text-[#38bdf8] shrink-0" />
                 <span className="text-sm">Karachi, Pakistan</span>
               </div>
-              <div className="flex items-center gap-3 text-foreground/60">
+              <a href="mailto:zafarsolutions.pk@gmail.com" className="flex items-center gap-3 text-foreground/60 hover:text-[#38bdf8] transition-colors">
                 <Mail size={18} className="text-[#38bdf8] shrink-0" />
-                <span className="text-sm">channazafar66@gmail.com</span>
-              </div>
+                <span className="text-sm">zafarsolutions.pk@gmail.com</span>
+              </a>
             </div>
             {/* 3D Call to Action Card in Footer */}
             <div className="mt-8 p-4 bg-gradient-to-br from-foreground/5 to-transparent border border-foreground/10 rounded-2xl group hover:border-[#38bdf8]/30 transition-all">
@@ -108,8 +102,8 @@ export default function Footer() {
 
         {/* BOTTOM COPYRIGHT */}
         <div className="pt-8 border-t border-foreground/5 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-foreground/40 text-xs">
-            © {new Date().getFullYear()} Zafar Muhammad. All rights reserved.
+          <p className="text-foreground/40 text-xs" suppressHydrationWarning>
+            © {new Date().getFullYear()} Zafar Solutions. All rights reserved.
           </p>
           <div className="flex gap-8 text-foreground/40 text-xs font-medium">
             <Link href="#" className="hover:text-foreground transition-colors">Privacy Policy</Link>

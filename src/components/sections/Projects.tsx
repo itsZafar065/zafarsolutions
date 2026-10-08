@@ -6,31 +6,12 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import Image from "next/image";
 
+import { projectsData } from "@/data/projects";
+
 // Swiper CSS
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-
-const projects = [
-  {
-    title: "Token System",
-    category: "Next.js / Custom Software",
-    image: "https://images.unsplash.com/photo-1551288049-bbda38a5f972?q=80&w=800",
-    desc: "Custom token generation and management workflow."
-  },
-  {
-    title: "Naeemi Fragrance",
-    category: "Next.js / E-Commerce",
-    image: "https://images.unsplash.com/photo-1557821552-17105176677c?q=80&w=800",
-    desc: "Premium Next.js fragrance online shop."
-  },
-  {
-    title: "Custom ERP Software",
-    category: "Next.js / Custom Software",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800",
-    desc: "Business resource planning and custom analytics."
-  }
-];
 
 export default function Projects() {
   const [mounted, setMounted] = useState(false);
@@ -41,7 +22,7 @@ export default function Projects() {
 
   if (!mounted) return null;
 
-  const duplicatedProjects = [...projects, ...projects];
+  const displayProjects = projectsData.filter((p) => p.featured);
 
   return (
     <section className="py-24 bg-background relative overflow-hidden transition-colors duration-500">
@@ -55,7 +36,7 @@ export default function Projects() {
           className="text-center mb-16 space-y-4"
         >
           <span className="text-brandBlue font-bold tracking-[0.3em] uppercase text-[10px] md:text-xs">
-            / Selected Portfolio
+            / Featured Work
           </span>
           <h2 className="text-3xl md:text-5xl font-black text-foreground leading-tight">
             Engineering <span className="text-foreground/40 font-light">Masterpieces</span>
@@ -68,7 +49,7 @@ export default function Projects() {
           spaceBetween={30}
           slidesPerView={1}
           centeredSlides={true}
-          loop={true}
+          loop={displayProjects.length > 2}
           autoplay={{ delay: 3000, disableOnInteraction: false }}
           pagination={{ clickable: true, dynamicBullets: true }}
           breakpoints={{
@@ -78,8 +59,8 @@ export default function Projects() {
           modules={[Autoplay, Pagination, Navigation]}
           className="pb-16 !overflow-visible"
         >
-          {duplicatedProjects.map((project, index) => (
-            <SwiperSlide key={index} className="flex justify-center h-full">
+          {displayProjects.map((project) => (
+            <SwiperSlide key={project.id} className="flex justify-center h-full">
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
@@ -93,26 +74,50 @@ export default function Projects() {
                     src={project.image} 
                     alt={project.title}
                     fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-110 grayscale-[40%] group-hover:grayscale-0"
+                    className="object-cover object-top transition-transform duration-700 group-hover:scale-105 grayscale-[15%] group-hover:grayscale-0"
                   />
                   <div className="absolute inset-0 bg-background/20 group-hover:bg-transparent transition-all" />
+                  {project.status && (
+                    <div className="absolute top-3 right-3 z-10">
+                      <span className={`text-[10px] font-bold px-2.5 py-1 rounded-full backdrop-blur-md border shadow-sm ${
+                        project.status === "In Progress"
+                          ? "bg-amber-500/20 text-amber-400 border-amber-500/30"
+                          : "bg-emerald-500/20 text-emerald-400 border-emerald-500/30"
+                      }`}>
+                        ● {project.status}
+                      </span>
+                    </div>
+                  )}
                 </div>
 
                 {/* Content */}
-                <div className="space-y-3 pb-4">
-                  <span className="text-brandGreen font-mono text-[10px] uppercase tracking-widest px-3 py-1 rounded-full bg-brandGreen/10 border border-brandGreen/20">
-                    {project.category}
-                  </span>
-                  <h3 className="text-xl font-bold text-foreground group-hover:text-brandBlue transition-colors">
-                    {project.title}
-                  </h3>
-                  <p className="text-foreground/50 text-xs md:text-sm leading-relaxed max-w-[280px] font-light italic">
-                    &quot;{project.desc}&quot;
-                  </p>
+                <div className="space-y-3 pb-4 flex flex-col items-center flex-1 justify-between">
+                  <div className="space-y-3">
+                    <span className="text-brandGreen font-mono text-[10px] uppercase tracking-widest px-3 py-1 rounded-full bg-brandGreen/10 border border-brandGreen/20">
+                      {project.displayCategory}
+                    </span>
+                    <h3 className="text-xl font-bold text-foreground group-hover:text-brandBlue transition-colors">
+                      {project.title}
+                    </h3>
+                    <p className="text-foreground/50 text-xs md:text-sm leading-relaxed max-w-[280px] font-light italic">
+                      &quot;{project.desc}&quot;
+                    </p>
+                  </div>
                   
-                  <button className="mt-4 flex items-center gap-2 text-foreground text-[11px] font-bold uppercase tracking-widest mx-auto group-hover:text-brandBlue transition-all">
-                    View Project <ArrowUpRight size={14} className="group-hover:rotate-45 transition-transform" />
-                  </button>
+                  {project.link !== "#" ? (
+                    <a 
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-4 flex items-center gap-2 text-foreground text-[11px] font-bold uppercase tracking-widest mx-auto group-hover:text-brandBlue transition-all"
+                    >
+                      View Live Project <ArrowUpRight size={14} className="group-hover:rotate-45 transition-transform" />
+                    </a>
+                  ) : (
+                    <span className="mt-4 flex items-center gap-1.5 text-amber-400/80 text-[10px] font-semibold uppercase tracking-widest mx-auto cursor-default bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20">
+                      Under Active Development
+                    </span>
+                  )}
                 </div>
               </motion.div>
             </SwiperSlide>

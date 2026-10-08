@@ -62,8 +62,8 @@ export default function WhatWeDo() {
                       <p className="text-foreground/50 text-[11px] font-bold uppercase tracking-wider">Agile Support</p>
                     </div>
                     <div className="space-y-1">
-                      <p className="text-2xl font-black text-foreground">2 Years</p>
-                      <p className="text-foreground/50 text-[11px] font-bold uppercase tracking-wider">Freelance Work</p>
+                      <p className="text-2xl font-black text-foreground">5+ Years</p>
+                      <p className="text-foreground/50 text-[11px] font-bold uppercase tracking-wider">Experience</p>
                     </div>
                   </div>
                 </div>
@@ -99,7 +99,7 @@ export default function WhatWeDo() {
                 I am a dedicated <strong>Full Stack Developer</strong> with a proven track record of converting abstract layouts into fully scalable and interactive web applications. 
               </p>
               <p className="text-foreground/60 text-sm md:text-base leading-relaxed border-l-2 border-brandPurple/30 pl-6 font-light italic">
-                With <strong>2 years of solid freelancing experience</strong>, I understand project life cycles end-to-end. My background includes <strong>6 months of Project Management</strong>, enabling me to plan and scoping workflows effectively, alongside <strong>5 months of specialized WordPress development</strong> delivering high-performance e-commerce and cms structures.
+                With <strong>5+ years of solid full-stack development experience</strong>, I understand project life cycles end-to-end. My background includes architecting complex enterprise systems, scalable web applications, alongside specialized Laravel, Next.js, and WordPress solutions delivering high-performance platforms.
               </p>
             </div>
 

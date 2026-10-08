@@ -38,12 +38,12 @@ export default function Hero() {
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
             <Magnetic>
-              <a href="/portfolio" className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-brandPurple to-brandBlue hover:from-brandPurple/90 hover:to-brandBlue/90 text-white font-bold text-sm px-8 py-4 rounded-xl shadow-lg shadow-brandPurple/20 transition-all duration-300">
+              <a href="/our-work" className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-brandPurple to-brandBlue hover:from-brandPurple/90 hover:to-brandBlue/90 text-white font-bold text-sm px-8 py-4 rounded-xl shadow-lg shadow-brandPurple/20 transition-all duration-300">
                 View My Work <ArrowRight size={16} />
               </a>
             </Magnetic>
             <Magnetic>
-              <a href="mailto:channazafar66@gmail.com" className="inline-flex items-center justify-center gap-2 bg-transparent border border-foreground/20 hover:border-foreground/40 text-foreground font-bold text-sm px-8 py-4 rounded-xl transition-all duration-300">
+              <a href="mailto:zafarsolutions.pk@gmail.com" className="inline-flex items-center justify-center gap-2 bg-transparent border border-foreground/20 hover:border-foreground/40 text-foreground font-bold text-sm px-8 py-4 rounded-xl transition-all duration-300">
                 Contact Me <Download size={16} />
               </a>
             </Magnetic>

@@ -35,7 +35,7 @@ export default function AboutHero() {
 
             {/* Concise Bio */}
             <p className="text-foreground/75 text-base md:text-lg leading-relaxed max-w-2xl font-light">
-              I am a passionate Full Stack Developer with over 2 years of active freelance delivery. I build complete frontend interfaces in React/Next.js, structure flexible custom backend platforms, and deploy custom content systems in WordPress.
+              I am a passionate Full Stack Developer with over 5 years of active professional delivery. I build complete frontend interfaces in React/Next.js, structure robust custom backend systems in Laravel &amp; Node.js, and deploy custom content systems in WordPress.
             </p>
 
             {/* Skill focus list */}
@@ -61,9 +61,9 @@ export default function AboutHero() {
                 </a>
               </Magnetic>
               <Magnetic>
-                <a href="/portfolio" className="premium-button premium-button-secondary">
+                <a href="/our-work" className="premium-button premium-button-secondary">
                   <span className="premium-button-content">
-                    View Portfolio
+                    View Our Work
                   </span>
                 </a>
               </Magnetic>

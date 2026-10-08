@@ -17,8 +17,13 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Zafar Muhammad | Full Stack Developer",
-  description: "Next-level full-stack development and custom digital experiences.",
+  title: "Zafar Solutions | Digital Agency & Full Stack Solutions",
+  description: "Next-level full-stack development, WordPress engineering, and custom digital experiences.",
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+    ],
+  },
 };
 
 export default function RootLayout({
