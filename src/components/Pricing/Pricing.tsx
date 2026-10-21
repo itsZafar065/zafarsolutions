@@ -194,7 +194,7 @@ export default function Pricing() {
                 transition={{ delay: index * 0.1 }}
                 viewport={{ once: true }}
                 onClick={() => setSelectedPlanIndex(index)}
-                className={`group relative bg-background rounded-3xl p-8 shadow-xl transition-all duration-300 cursor-pointer flex flex-col justify-between border ${
+                className={`group relative bg-background rounded-3xl p-6 sm:p-8 shadow-xl transition-all duration-300 cursor-pointer flex flex-col justify-between border ${
                   isSelected
                     ? `${plan.border} ring-2 ring-offset-2 ring-offset-background`
                     : "border-foreground/10 hover:border-foreground/20 hover:scale-[1.01]"
@@ -275,17 +275,27 @@ export default function Pricing() {
                         e.stopPropagation();
                         handleOpenModal(index);
                       }}
-                      className={`w-full py-4 rounded-xl font-bold text-[10px] uppercase tracking-[0.2em] transition-all flex items-center justify-center gap-2 cursor-pointer ${
+                      className={`group/btn w-full h-11 sm:h-12 px-4 rounded-xl font-bold text-xs uppercase tracking-wider transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer active:scale-[0.98] ${
                         isSelected
                           ? "text-white shadow-lg"
                           : "bg-foreground/5 text-foreground border border-foreground/10 hover:bg-foreground/10"
                       }`}
                       style={{
-                        backgroundColor: isSelected ? plan.color : undefined
+                        backgroundColor: isSelected ? plan.color : undefined,
+                        boxShadow: isSelected ? `0 8px 20px -4px ${plan.glowColor}` : undefined
                       }}
                     >
-                      <span>{isSelected ? `Get Started with ${plan.name}` : `Select & Inquire`}</span>
-                      <ArrowRight size={14} />
+                      <span className="sm:hidden font-extrabold truncate">
+                        {isSelected ? "Get Started" : "Select Model"}
+                      </span>
+                      <span className="hidden sm:inline font-bold truncate">
+                        {isSelected ? `Get Started with ${plan.name}` : `Select & Inquire`}
+                      </span>
+                      <ArrowRight 
+                        size={16} 
+                        strokeWidth={2.2} 
+                        className="shrink-0 transition-transform duration-300 group-hover/btn:translate-x-1" 
+                      />
                     </button>
                   </div>
                 </div>

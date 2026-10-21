@@ -1,4 +1,6 @@
 "use client";
+
+import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { Code2, Smartphone, Globe, LayoutDashboard, Database, ShieldCheck, Laptop, ShoppingBag, Cloud } from "lucide-react";
 
@@ -64,55 +66,131 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.15,
+      staggerChildren: 0.12,
     },
   },
 };
 
 const itemVariants = {
   hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] as const } },
 };
 
-// Auto-highlight animations for scroll entrance
-const glowVariants = {
-  hidden: { opacity: 0 },
-  visible: (i: number) => ({
-    opacity: [0, 1, 1, 0],
-    transition: {
-      delay: i * 0.15 + 0.4,
-      duration: 1.4,
-      times: [0, 0.15, 0.85, 1],
-    }
-  })
-};
+function ServiceCard({
+  service,
+  index,
+  isMobile,
+  manualActive,
+  onCardClick,
+}: {
+  service: typeof services[0];
+  index: number;
+  isMobile: boolean;
+  manualActive: number | null;
+  onCardClick: (index: number) => void;
+}) {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const [isCentered, setIsCentered] = useState(false);
 
-const iconVariants = {
-  hidden: { scale: 1, rotate: 0 },
-  visible: (i: number) => ({
-    scale: [1, 1.1, 1.1, 1],
-    rotate: [0, 6, 6, 0],
-    transition: {
-      delay: i * 0.15 + 0.4,
-      duration: 1.4,
-      times: [0, 0.15, 0.85, 1],
-    }
-  })
-};
+  useEffect(() => {
+    const el = cardRef.current;
+    if (!el) return;
 
-const lineVariants = {
-  hidden: { width: "3rem" },
-  visible: (i: number) => ({
-    width: ["3rem", "100%", "100%", "3rem"],
-    transition: {
-      delay: i * 0.15 + 0.4,
-      duration: 1.4,
-      times: [0, 0.15, 0.85, 1],
-    }
-  })
-};
+    // Detect when this service card enters the vertical center 60% of mobile viewport
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsCentered(entry.isIntersecting);
+      },
+      {
+        rootMargin: "-20% 0px -20% 0px",
+        threshold: 0.25,
+      }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  const isActive = isMobile && (manualActive === index || (manualActive === null && isCentered));
+
+  return (
+    <motion.div
+      ref={cardRef}
+      variants={itemVariants}
+      whileHover={{ y: -10 }}
+      onClick={() => onCardClick(index)}
+      className={`group relative p-7 sm:p-8 rounded-3xl bg-background border transition-all duration-500 cursor-pointer overflow-hidden shadow-xl ${
+        isActive
+          ? "border-foreground/20 -translate-y-2 shadow-2xl"
+          : "border-foreground/5 hover:border-foreground/10"
+      }`}
+    >
+      {/* Glow Background Gradient */}
+      <div
+        className={`absolute inset-0 bg-gradient-to-br ${service.gradient} to-transparent transition-opacity duration-500 pointer-events-none ${
+          isActive ? "opacity-100" : "opacity-0 group-hover:opacity-100"
+        }`}
+      />
+
+      <div className="relative z-10 space-y-4">
+        {/* Service Icon Box */}
+        <div
+          className={`w-14 h-14 bg-foreground/5 rounded-2xl flex items-center justify-center border border-foreground/10 transition-all duration-500 ${
+            isActive
+              ? "scale-110 rotate-6 shadow-md"
+              : "group-hover:scale-110 group-hover:rotate-6"
+          }`}
+        >
+          {service.icon}
+        </div>
+
+        {/* Title */}
+        <h3
+          className={`text-xl font-bold tracking-tight transition-colors duration-300 ${
+            isActive ? "text-brandPurple" : "text-foreground group-hover:text-brandPurple"
+          }`}
+        >
+          {service.title}
+        </h3>
+
+        {/* Description */}
+        <p className="text-foreground/60 text-sm leading-relaxed font-medium">
+          {service.desc}
+        </p>
+
+        {/* Decorative Animated Bottom Bar */}
+        <div className="pt-4 overflow-hidden">
+          <div
+            className={`h-[2px] transition-all duration-700 bg-gradient-to-r from-brandPurple to-brandBlue ${
+              isActive ? "w-full" : "w-12 group-hover:w-full"
+            }`}
+          />
+        </div>
+      </div>
+    </motion.div>
+  );
+}
 
 export default function Services() {
+  const [isMobile, setIsMobile] = useState(false);
+  const [manualActive, setManualActive] = useState<number | null>(null);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const handleCardClick = (index: number) => {
+    if (isMobile) {
+      setManualActive((prev) => (prev === index ? null : index));
+    }
+  };
+
   return (
     <section className="relative py-24 bg-background overflow-hidden">
       {/* Background Glows for 3D Effect */}
@@ -142,44 +220,17 @@ export default function Services() {
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
           {services.slice(0, 6).map((service, index) => (
-            <motion.div 
-              key={index}
-              variants={itemVariants}
-              whileHover={{ y: -10 }}
-              custom={index}
-              className="group relative p-8 rounded-3xl bg-background border border-foreground/5 hover:border-foreground/10 transition-all duration-500 cursor-pointer overflow-hidden shadow-xl"
-            >
-              <motion.div 
-                custom={index}
-                variants={glowVariants}
-                className={`absolute inset-0 bg-gradient-to-br ${service.gradient} to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none`} 
-              />
-              
-              <div className="relative z-10 space-y-4">
-                <motion.div 
-                  custom={index}
-                  variants={iconVariants}
-                  className="w-14 h-14 bg-foreground/5 rounded-2xl flex items-center justify-center border border-foreground/10 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500"
-                >
-                  {service.icon}
-                </motion.div>
-                <h3 className="text-xl font-bold text-foreground tracking-tight">{service.title}</h3>
-                <p className="text-foreground/60 text-sm leading-relaxed font-medium">
-                  {service.desc}
-                </p>
-                
-                <div className="pt-4 overflow-hidden">
-                  <motion.div 
-                    custom={index}
-                    variants={lineVariants}
-                    className="h-[2px] bg-foreground/10 group-hover:w-full transition-all duration-700 bg-gradient-to-r from-brandPurple to-transparent" 
-                  />
-                </div>
-              </div>
-            </motion.div>
+            <ServiceCard
+              key={service.title}
+              service={service}
+              index={index}
+              isMobile={isMobile}
+              manualActive={manualActive}
+              onCardClick={handleCardClick}
+            />
           ))}
         </motion.div>
       </div>
     </section>
   );
-}
+}

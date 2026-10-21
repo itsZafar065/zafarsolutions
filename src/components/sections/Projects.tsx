@@ -22,7 +22,7 @@ export default function Projects() {
 
   if (!mounted) return null;
 
-  const displayProjects = projectsData.filter((p) => p.featured);
+  const displayProjects = projectsData.filter((p) => p.featured && p.id !== 0);
 
   return (
     <section className="py-24 bg-background relative overflow-hidden transition-colors duration-500">

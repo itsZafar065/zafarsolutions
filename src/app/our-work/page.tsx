@@ -9,7 +9,7 @@ import Image from "next/image";
 import { projectsData } from "@/data/projects";
 
 // Categories definition
-const categories = ["All", "Laravel", "Next.js", "WordPress", "Custom Software", "Figma"];
+const categories = ["All", "Featured SaaS", "Next.js", "Laravel", "WordPress", "Custom Software", "Figma"];
 
 export default function OurWorkPage() {
   const [filter, setFilter] = useState("All");
@@ -24,7 +24,9 @@ export default function OurWorkPage() {
 
     const matchesSearch =
       project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      project.desc.toLowerCase().includes(searchQuery.toLowerCase());
+      project.desc.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (typeof project.displayCategory === "string" &&
+        project.displayCategory.toLowerCase().includes(searchQuery.toLowerCase()));
 
     return matchesCategory && matchesSearch;
   });
@@ -58,7 +60,7 @@ export default function OurWorkPage() {
           {/* Filter Bar & Search: Mobile First Responsive Layout */}
           <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3.5 mb-10 w-full">
             
-            {/* Scrollable Category Track for Mobile */}
+            {/* Scrollable Category Track for Mobile - Pure Clean Text Tabs without Emojis/Icons */}
             <div className="w-full md:w-auto overflow-x-auto no-scrollbar py-1 -mx-4 px-4 sm:mx-0 sm:px-0">
               <div className="flex items-center gap-2 min-w-max md:flex-wrap">
                 {categories.map((cat) => {
@@ -73,7 +75,7 @@ export default function OurWorkPage() {
                           : "bg-foreground/[0.04] dark:bg-white/[0.04] text-foreground/65 hover:text-foreground hover:bg-foreground/[0.08] border border-foreground/[0.08] dark:border-white/[0.08]"
                       }`}
                     >
-                      {cat === "Figma" ? "🎨 Figma" : cat}
+                      {cat}
                     </button>
                   );
                 })}
@@ -128,10 +130,10 @@ export default function OurWorkPage() {
                 {/* Badges */}
                 <div className="flex flex-wrap items-center justify-center gap-2 mb-4">
                   <span className="text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full bg-brandPurple/15 text-brandPurple border border-brandPurple/30">
-                    🎨 UI/UX DESIGN LAB
+                    UI/UX DESIGN LAB
                   </span>
                   <span className="text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full bg-amber-500/15 text-amber-400 border border-amber-500/30">
-                    🔒 Enterprise NDA Projects
+                    Enterprise NDA Projects
                   </span>
                 </div>
 
@@ -186,7 +188,7 @@ export default function OurWorkPage() {
               </div>
             </motion.div>
           ) : (
-            /* Regular Projects Grid */
+            /* Regular Projects Grid - Rendered identically for all projects */
             <>
               <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
                 <AnimatePresence mode="popLayout">

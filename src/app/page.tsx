@@ -3,6 +3,7 @@ import TechMarquee from "@/components/sections/TechMarquee";
 import WhatWeDo from "@/components/WhatWeDo/WhatWeDo";
 import Services from "@/components/sections/Services";
 import Process from "@/components/Process/Process";
+import DropzaShowcase from "@/components/sections/DropzaShowcase";
 import Projects from "@/components/sections/Projects"; 
 import Pricing from "@/components/Pricing/Pricing";
 
@@ -24,6 +25,9 @@ export default function Home() {
 
       {/* 4. Steps (How it works?) */}
       <Process />
+
+      {/* 4.5. Featured SaaS Product Spotlight */}
+      <DropzaShowcase />
 
       {/* 5. Portfolio */}
       <Projects />
