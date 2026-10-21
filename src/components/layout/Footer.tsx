@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { Linkedin, Mail, MapPin, ArrowUpRight } from "lucide-react";
+import { Github, Linkedin, Mail, MapPin, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import Logo from "@/components/ui/Logo";
 
@@ -43,6 +43,14 @@ export default function Footer() {
                 className="w-10 h-10 rounded-full bg-foreground/5 border border-foreground/10 flex items-center justify-center text-foreground/40 transition-colors"
               >
                 <Linkedin size={18} />
+              </motion.a>
+              <motion.a 
+                href="https://github.com/itsZafar065" target="_blank" rel="noopener noreferrer"
+                whileHover={{ y: -5, color: "#38bdf8" }}
+                aria-label="GitHub Profile"
+                className="w-10 h-10 rounded-full bg-foreground/5 border border-foreground/10 flex items-center justify-center text-foreground/40 hover:text-foreground hover:bg-foreground/10 transition-colors"
+              >
+                <Github size={18} />
               </motion.a>
             </div>
           </div>
